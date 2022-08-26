@@ -1,12 +1,12 @@
 package main
 
-import "code.byted.org/hc_test/interview"
+import "code.byted.org/hc_test/json"
 
 func main() {
 	//fmt.Printf("hello world***\n")
 	//diff.Main()
 	//marshal.Main()
 	//_map.Main()
-	//json.Main()
-	interview.Main()
+	json.Main()
+	//interview.Main()
 }
