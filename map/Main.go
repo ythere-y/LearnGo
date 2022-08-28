@@ -9,7 +9,8 @@ import (
 
 func Main() {
 	//IfMapIsReference()
-	testMapQuery()
+	//testMapQuery()
+	syncMapUsage()
 }
 
 func testUnmarshalStringIntoMap() bool {
