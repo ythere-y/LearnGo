@@ -1,6 +1,6 @@
 package main
 
-import "code.byted.org/hc_test/newAndmake"
+import "code.byted.org/hc_test/mock"
 
 func main() {
 	//fmt.Printf("hello world***\n")
@@ -10,5 +10,6 @@ func main() {
 	//json.Main()
 	//interview.Main()
 	//typeAssertion.Main()
-	newAndmake.Main()
+	//newAndmake.Main()
+	mock.Main()
 }
