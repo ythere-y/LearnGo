@@ -1,6 +1,8 @@
 package user
 
-import "code.byted.org/hc_test/mock/person"
+import (
+	"code.byted.org/hc_test/mock/person"
+)
 
 type User struct {
 	Person person.Male
@@ -15,4 +17,8 @@ func (u *User) GetUserInfo(id int) int {
 	} else {
 		return u.Person.Get(id)
 	}
+}
+
+func (u *User) GetUserName(idx int) string {
+	return person.GetName(idx)
 }
