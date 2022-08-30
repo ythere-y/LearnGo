@@ -7,10 +7,11 @@ import (
 
 func Main() {
 
-	assertionFail()
+	//assertionFail()
 	//safeAssertion()
 	//differentInt()
 	//switchAssertion()
+	funcTypeToType()
 }
 
 type NoMethods interface {
@@ -110,6 +111,57 @@ func differentInt() {
 	} else {
 		fmt.Printf("int64 not equal to int\n")
 	}
+
+}
+
+type Father interface {
+	Get()
+}
+
+type BoBoReq struct {
+	Name string
+}
+
+func (c BoBoReq) Get() {
+
+}
+
+type BoBoResp struct {
+	Name string
+}
+type CoCoReq struct {
+	Score int
+}
+
+func (c CoCoReq) Get() {
+
+}
+
+type CoCoResp struct {
+	Score int
+}
+
+func checkReqNil(req Father) interface{} {
+	//var resp interface{}
+	switch (req).(type) {
+	case BoBoReq:
+		return BoBoReq{Name: "bobo"}
+	case CoCoReq:
+		return CoCoResp{Score: -1}
+	case Father:
+		return nil
+	default:
+		return nil
+	}
+}
+func funcTypeToType() {
+	var Breq *BoBoReq
+	var Creq *CoCoReq
+
+	Bresp := checkReqNil(Breq)
+	fmt.Printf("B resp = %#v\n", Bresp)
+	Cresp := checkReqNil(Creq)
+	fmt.Printf("C resp = %#v\n", Cresp)
 
 }
 
