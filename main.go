@@ -1,14 +1,14 @@
 package main
 
-import _map "code.byted.org/hc_test/map"
+import "code.byted.org/hc_test/json"
 
 func main() {
 	//fmt.Printf("hello world***\n")
 	//diff.Main()
 	//marshal.Main()
-	_map.Main()
-	//json.Main()
-	//interview.Main()
+	//_map.Main()
+	json.Main()
+	//interview我是.Main()
 	//typeAssertion.Main()
 	//newAndmake.Main()
 	//mock.Main()

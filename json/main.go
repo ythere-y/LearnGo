@@ -4,10 +4,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/luci/go-render/render"
+
+	"code.byted.org/gopkg/thrift"
 )
 
 func Main() {
-	testUnmarshalOmitempty()
+	//testUnmarshalOmitempty()
+	testUnmarshalToArray()
 }
 
 type Student struct {
@@ -45,4 +48,27 @@ func testUnmarshalOmitempty() {
 	var re_get = TagTest{}
 	_ = json.Unmarshal([]byte(str), &re_get)
 	fmt.Printf("\nre get >>\n%+v", render.Render(re_get))
+}
+
+func testUnmarshalToArray() {
+	{
+
+		var sourceList []*Student
+		sourceList = append(sourceList, &Student{
+			Name:  thrift.StringPtr("Tom"),
+			Score: 100,
+		})
+		sourceList = append(sourceList, &Student{
+			Name:  thrift.StringPtr("Jack"),
+			Score: 90,
+		})
+		fmt.Printf("sourceList = %+v\n", render.Render(sourceList))
+		getByte, _ := json.Marshal(sourceList)
+		var reGetList []*Student
+		err := json.Unmarshal(getByte, &reGetList)
+		if err != nil {
+			fmt.Printf("unmarshal err\n")
+		}
+		fmt.Printf("reget = %+v\n", render.Render(reGetList))
+	}
 }
