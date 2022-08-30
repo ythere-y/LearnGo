@@ -37,16 +37,8 @@ func allTypeSum() {
 	fmt.Printf("result = %v\n", res)
 }
 
-type Father interface {
-	Get()
-}
-
 type BoBoReq struct {
 	Name string
-}
-
-func (c BoBoReq) Get() {
-
 }
 
 type BoBoResp struct {
@@ -56,10 +48,6 @@ type CoCoReq struct {
 	Score int
 }
 
-func (c CoCoReq) Get() {
-
-}
-
 type CoCoResp struct {
 	Score int
 }
@@ -67,22 +55,33 @@ type CoCoResp struct {
 func checkReqNil(req interface{}) interface{} {
 	//var resp interface{}
 	switch (req).(type) {
-	case BoBoReq:
-		return BoBoReq{Name: "bobo"}
+	case *BoBoReq:
+		if req.(*BoBoReq) == nil {
+			return BoBoResp{Name: "bobo"}
+		} else {
+			//return BoBoResp{Name: req.(BoBoReq).Name}
+			return req
+		}
 	case CoCoReq:
-		return CoCoResp{Score: -1}
-	case Father:
-		return nil
+		if req == nil {
+			return CoCoResp{Score: -1}
+		} else {
+			return req
+		}
 	default:
 		return nil
 	}
 }
 func funcTypeToType() {
-	var Breq = BoBoReq{Name: "TOM"}
-	var Creq = CoCoReq{Score: 123}
+	var Breq = &BoBoReq{Name: "TOM"}
+	var Breq2 *BoBoReq = nil
+	var Creq = &CoCoReq{Score: 123}
 
 	Bresp := checkReqNil(Breq)
 	fmt.Printf("B resp = %#v\n", Bresp)
+
+	Bresp2 := checkReqNil(Breq2)
+	fmt.Printf("B resp = %#v\n", Bresp2)
 	Cresp := checkReqNil(Creq)
 	fmt.Printf("C resp = %#v\n", Cresp)
 
