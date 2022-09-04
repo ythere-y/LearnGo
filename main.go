@@ -1,6 +1,6 @@
 package main
 
-import "code.byted.org/hc_test/typeAssertion"
+import "code.byted.org/hc_test/slice"
 
 func main() {
 	//fmt.Printf("hello world***\n")
@@ -9,8 +9,12 @@ func main() {
 	//_map.Main()
 	//json.Main()
 	//interview我是.Main()
-	typeAssertion.Main()
+	//typeAssertion.Main()
 	//newAndmake.Main()
 	//mock.Main()
 	//pointer.Main()
+	//huawei.Main()
+	//ioTest.Main()
+	//anyLib.Main()
+	slice.Main()
 }
