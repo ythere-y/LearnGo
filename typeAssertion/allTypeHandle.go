@@ -81,7 +81,6 @@ func funcTypeToType() {
 	fmt.Printf("B resp = %#v\n", Bresp)
 
 	Bresp2 := checkReqNil(Breq2)
-	if Bresp2.(BoBoResp)
 	fmt.Printf("B resp = %#v\n", Bresp2)
 	Cresp := checkReqNil(Creq)
 	fmt.Printf("C resp = %#v\n", Cresp)

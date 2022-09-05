@@ -1,6 +1,6 @@
 package main
 
-import "code.byted.org/hc_test/slice"
+import "code.byted.org/hc_test/concurrency"
 
 func main() {
 	//fmt.Printf("hello world***\n")
@@ -16,5 +16,6 @@ func main() {
 	//huawei.Main()
 	//ioTest.Main()
 	//anyLib.Main()
-	slice.Main()
+	//slice.Main()
+	concurrency.Main()
 }
