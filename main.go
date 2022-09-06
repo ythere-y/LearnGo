@@ -1,10 +1,12 @@
 package main
 
-import "code.byted.org/hc_test/concurrency"
+import (
+	"code.byted.org/hc_test/diff"
+)
 
 func main() {
 	//fmt.Printf("hello world***\n")
-	//diff.Main()
+	diff.Main()
 	//marshal.Main()
 	//_map.Main()
 	//json.Main()
@@ -17,5 +19,5 @@ func main() {
 	//ioTest.Main()
 	//anyLib.Main()
 	//slice.Main()
-	concurrency.Main()
+	//concurrency.Main()
 }
