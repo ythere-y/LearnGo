@@ -1,23 +1,22 @@
 package main
 
-import (
-	"code.byted.org/hc_test/diff"
-)
+import "fmt"
 
 func main() {
 	//fmt.Printf("hello world***\n")
-	diff.Main()
+	//diff.Main()
 	//marshal.Main()
 	//_map.Main()
 	//json.Main()
-	//interview我是.Main()
+	//interview.Main()
 	//typeAssertion.Main()
 	//newAndmake.Main()
 	//mock.Main()
 	//pointer.Main()
-	//huawei.Main()
 	//ioTest.Main()
 	//anyLib.Main()
 	//slice.Main()
 	//concurrency.Main()
+	version := 0
+	fmt.Printf("%d,%d\n", version, int(version+1))
 }
