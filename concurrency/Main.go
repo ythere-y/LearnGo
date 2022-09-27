@@ -13,8 +13,10 @@ func Main() {
 	//selectTimeOut()
 	//panicWhileChannelEmpty()
 	//closeChannelToAvoidAllSleep()
-	quitWithSelect()
+	//quitWithSelect()
+	FetchData()
 }
+
 func tel(ch chan int) {
 	for i := 0; i < 15; i++ {
 		ch <- i

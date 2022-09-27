@@ -9,35 +9,73 @@ import (
 )
 
 func Main() {
-	IfMapIsReference()
+	testUnmarshalStringIntoMap()
+	//IfMapIsReference()
 	//testMapQuery()
 	//syncMapUsage()
 }
 
-func testUnmarshalStringIntoMap() bool {
-	rawStr := "{" +
-		"\"sdk\":\"true\"," +
-		"\"hc\":\"false\"" +
-		"}"
-	var testMap = make(map[string]string)
-	err := json.Unmarshal([]byte(rawStr), &testMap)
-	if err != nil {
-		println("unmarshal failed")
-		return true
-	}
-	var flag bool
-	flag = false
-	testName := "bad"
-	for key, val := range testMap {
-		if key == testName {
-			if val == "true" {
-				flag = true
+func testUnmarshalStringIntoMap() {
+	{
+		rawStr := "{" +
+			"\"sdk\":\"true\"," +
+			"\"hc\":\"false\"" +
+			"}"
+		var testMap = make(map[string]string)
+		err := json.Unmarshal([]byte(rawStr), &testMap)
+		if err != nil {
+			println("unmarshal failed")
+			return
+		}
+		var flag bool
+		flag = false
+		testName := "bad"
+		for key, val := range testMap {
+			if key == testName {
+				if val == "true" {
+					flag = true
+				}
 			}
 		}
+		fmt.Printf("[testName = %v], [result flag = %v]\n", testName, flag)
 	}
-	fmt.Printf("[testName = %v], [result flag = %v]\n", testName, flag)
-	//fmt.Printf("flag = %v\n", testMap["sdk"])
-	return false
+	{
+		rawStr := "{" +
+			"\"sdk\":true," +
+			"\"hc\":false" +
+			"}"
+		var testMap = make(map[string]bool)
+		err := json.Unmarshal([]byte(rawStr), &testMap)
+		if err != nil {
+			println("unmarshal failed")
+			return
+		}
+		{
+			testName := "bad"
+			var flag = false
+			if val, ok := testMap[testName]; ok {
+				flag = val
+			}
+			fmt.Printf("[testName = %v], [result flag = %v]\n", testName, flag)
+		}
+		{
+			testName := "hc"
+			var flag = false
+			if val, ok := testMap[testName]; ok {
+				flag = val
+			}
+			fmt.Printf("[testName = %v], [result flag = %v]\n", testName, flag)
+		}
+		{
+			testName := "sdk"
+			var flag = false
+			if val, ok := testMap[testName]; ok {
+				flag = val
+			}
+			fmt.Printf("[testName = %v], [result flag = %v]\n", testName, flag)
+		}
+	}
+	return
 }
 
 func IfMapIsReference() {

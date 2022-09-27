@@ -1,13 +1,13 @@
 package main
 
-import "fmt"
+import "code.byted.org/hc_test/json"
 
 func main() {
 	//fmt.Printf("hello world***\n")
 	//diff.Main()
 	//marshal.Main()
 	//_map.Main()
-	//json.Main()
+	json.Main()
 	//interview.Main()
 	//typeAssertion.Main()
 	//newAndmake.Main()
@@ -17,6 +17,6 @@ func main() {
 	//anyLib.Main()
 	//slice.Main()
 	//concurrency.Main()
-	version := 0
-	fmt.Printf("%d,%d\n", version, int(version+1))
+	//convert.Main()
+	//_struct.Main()
 }
