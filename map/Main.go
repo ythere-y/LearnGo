@@ -9,10 +9,11 @@ import (
 )
 
 func Main() {
-	testUnmarshalStringIntoMap()
+	//testUnmarshalStringIntoMap()
 	//IfMapIsReference()
 	//testMapQuery()
 	//syncMapUsage()
+	mapTraverse()
 }
 
 func testUnmarshalStringIntoMap() {

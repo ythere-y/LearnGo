@@ -1,0 +1,13 @@
+{
+  "testA": {
+    "mockResp": {
+      "name": "jack",
+      "score": 123
+    },
+    "mockErr": null
+  },
+  "testB": {
+    "mockResp": null,
+    "mockErr": null
+  }
+}

@@ -12,7 +12,8 @@ func Main() {
 	//testUnmarshalOmitempty()
 	//testUnmarshalToArray()
 	//configMarshal()
-	UtilsTest()
+	//UtilsTest()
+	jsonFileIOTest()
 }
 
 type Student struct {
