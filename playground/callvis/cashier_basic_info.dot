@@ -32,8 +32,6 @@ digraph GetOrCreateUser {
             node [style=filled, fillcolor=2]
             GetOrCreateUserV2 [label="{rpc|GetUserManagerRpc()|GetOrCreateUserV2}"]
         }
-        // subgraph cluster_level_1{
-        //     label = "call level 1"
             {
                 node [style=filled, fillcolor=3]
                 GetStoredPaymentMethods [label="{GetStoredPaymentMethods}"]
@@ -43,14 +41,9 @@ digraph GetOrCreateUser {
             }
             {
                 edge [arrowtail=diamond,arrowhead = empty]
-                GetStoredPaymentMethods -> GetOrCreateUserV2
                 service_GetInstallmentInfo->GetOrCreateUserV2
-                decisionEngine_MakeDecision->GetOrCreateUserV2
                 service_GetUserId ->GetOrCreateUserV2
             }
-        // }
-        // subgraph cluster_level_2{
-        //     label = "call level 2"
             {
                 node [style=filled, fillcolor=3]
                 service_GetMerchantPMDecisions [label="{service|GetMerchantPMDecisions}"]
@@ -67,15 +60,10 @@ digraph GetOrCreateUser {
             {
                 edge [arrowtail=diamond,arrowhead = empty]
                 PIBasicInfo->GetStoredPaymentMethods
-                CashierBasicInfo->GetStoredPaymentMethods
                 AgreementBasicInfo -> GetStoredPaymentMethods
                 GetInstallmentInfo -> service_GetInstallmentInfo
-                service_GetMerchantPMDecisions->decisionEngine_MakeDecision
                 handlers_GetStoredPaymentMethodsInfo -> service_GetUserId
             }
-        // }
-        // subgraph cluster_level_3{
-        //     label = "call level 3"
             {
                 node [style=filled, fillcolor=3]
                 service_GetAvailablePaymentMethodsFromGnAl [label="{service|GetAvailablePaymentMethodsFromGnAl}"]
@@ -86,16 +74,10 @@ digraph GetOrCreateUser {
             }
             {
                 edge [arrowtail=diamond,arrowhead = empty]
-                service_GetAvailablePaymentMethodsFromGnAl->service_GetMerchantPMDecisions
-                service_GetAvailablePaymentMethods->service_GetMerchantPMDecisions
                 handlers_FilterRiskUsersPaymentMethods->service_GetMerchantPMDecisions
                 handlers_FilterRiskUsersPaymentMethods->service_GetMerchantPMDecisions
-                FilterRiskUsersPaymentMethodV2->service_GetMerchantPMDecisions
                 GetStoredPaymentMethodsInfo -> handlers_GetStoredPaymentMethodsInfo
             }
-        // }
-        // subgraph cluster_level_4{
-        //     label = "call level 4"
             {
                 node [style=filled, fillcolor=3]
                 
@@ -108,16 +90,10 @@ digraph GetOrCreateUser {
             }
             {
                 edge [arrowtail=diamond,arrowhead = empty]
-                getPaymentMethodV2FromGnAl->service_GetAvailablePaymentMethodsFromGnAl
                 getPaymentMethodsByParamsFromGnAl->service_GetAvailablePaymentMethodsFromGnAl
-                handlers_GetPaymentMethodV2->service_GetAvailablePaymentMethods
                 getPaymentMethodsByParams->service_GetAvailablePaymentMethods
                 FilterRiskUsersPaymentMethods-> handlers_FilterRiskUsersPaymentMethods
-                GetPayoutPaymentMethodInfo -> FilterRiskUsersPaymentMethodV2
             }
-        // }
-        // subgraph cluster_level_5{
-        //     label = "call level 5"
             {
                 node [style=filled, fillcolor=3]
                 GetPaymentMethods [label="{GetPaymentMethods}"]
@@ -137,30 +113,41 @@ digraph GetOrCreateUser {
             {
                 edge [arrowtail=diamond,arrowhead = empty]
 
-                handlers_GetPaymentMethodV2->getPaymentMethodV2FromGnAl
                 GetPaymentMethods->getPaymentMethodsByParamsFromGnAl
                 GetPaymentMethods->getPaymentMethodsByParams
                 getPIPaymentMethodInfo->handlers_GetPaymentMethodV2
                 GetPaymentMethodsInfo->handlers_GetPaymentMethodV2
-                GetPayoutPaymentMethodInfo->handlers_GetPaymentMethodV2
-                CashierBasicInfoV2->GetPayoutPaymentMethodInfo
-                getPaymentMethodInfo->handlers_GetPaymentMethodV2
                 getAgreementPaymentMethodInfo->handlers_GetPaymentMethodV2
                 GetPaymentMethodV2->handlers_GetPaymentMethodV2
-            }
-        // }
-        // subgraph cluster_level_6{
-        //     label = "call level 6"
-            {
-                node [style=filled, fillcolor=3]
             }
             {
                 edge [arrowtail=diamond,arrowhead = empty]
                 AgreementBasicInfo->getAgreementPaymentMethodInfo
-                CashierBasicInfo->getPaymentMethodInfo
                 GetStoredPaymentMethodsInfo->GetPaymentMethodsInfo
             }
-        // }
+            {
+                edge[ arrowtail = diamond, arrowhead = empty,color = red]
+                CashierBasicInfo->getPaymentMethodInfo
+                CashierBasicInfoV2->GetPayoutPaymentMethodInfo
+                CashierBasicInfo->GetStoredPaymentMethods
+
+                getPaymentMethodInfo->handlers_GetPaymentMethodV2
+                GetPayoutPaymentMethodInfo->handlers_GetPaymentMethodV2
+                GetPayoutPaymentMethodInfo -> FilterRiskUsersPaymentMethodV2
+                GetStoredPaymentMethods -> GetOrCreateUserV2
+
+                handlers_GetPaymentMethodV2->getPaymentMethodV2FromGnAl
+                handlers_GetPaymentMethodV2->service_GetAvailablePaymentMethods
+                FilterRiskUsersPaymentMethodV2->service_GetMerchantPMDecisions
+            
+                getPaymentMethodV2FromGnAl->service_GetAvailablePaymentMethodsFromGnAl
+                service_GetAvailablePaymentMethods->service_GetMerchantPMDecisions
+                service_GetMerchantPMDecisions->decisionEngine_MakeDecision
+
+                service_GetAvailablePaymentMethodsFromGnAl->service_GetMerchantPMDecisions
+                decisionEngine_MakeDecision->GetOrCreateUserV2
+
+            }
 
     }
 
